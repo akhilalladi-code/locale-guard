@@ -1,0 +1,6 @@
+import http from 'node:http';
+import {createReadStream,existsSync,statSync} from 'node:fs';
+import {extname,resolve,sep} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=resolve(fileURLToPath(new URL('../',import.meta.url))),port=Number(process.env.PORT||4177),mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
+http.createServer((request,response)=>{const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname),relative=pathname==='/'?'index.html':pathname.replace(/^\/+/,''),file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep)){response.writeHead(403).end('Forbidden');return;}if(!existsSync(file)||!statSync(file).isFile()){response.writeHead(404,{'content-type':'text/plain; charset=utf-8'}).end('Not found');return;}response.writeHead(200,{'content-type':mime[extname(file)]||'application/octet-stream','x-content-type-options':'nosniff','referrer-policy':'no-referrer'});createReadStream(file).pipe(response);}).listen(port,'127.0.0.1',()=>process.stdout.write(`LocaleGuard available at http://127.0.0.1:${port}\n`));
