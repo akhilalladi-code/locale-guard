@@ -1,0 +1,10 @@
+{
+  "name": "locale-guard",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Local-first translation QA for JSON locale files.",
+  "scripts": {"dev":"node scripts/serve.mjs","test":"node --test","check":"node --check src/core.mjs && node --check src/app.mjs && node --check scripts/serve.mjs && npm test"},
+  "engines": {"node": ">=20"},
+  "license": "MIT"
+}
