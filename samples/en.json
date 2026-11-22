@@ -1,0 +1,18 @@
+{
+  "app": {
+    "title": "Welcome back, {name}",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "files": "{count, plural, one {# file} other {# files}}"
+  },
+  "onboarding": {
+    "headline": "Build a better workflow",
+    "description": "Keep your creative projects organised in one place.",
+    "continue": "Continue",
+    "legal": "By continuing, you agree to the <a>terms</a>."
+  },
+  "dashboard": {
+    "empty": "No projects yet. Create your first project.",
+    "greeting": "Good morning"
+  }
+}
